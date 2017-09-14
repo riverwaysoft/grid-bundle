@@ -1,0 +1,23 @@
+{
+    "name": "riverway/grid-bundle",
+    "license": "MIT",
+    "type": "project",
+    "description": "Grid bundle",
+    "authors": [
+        {
+            "name": "Sorokin Victor",
+            "email": "victor@riverway.it"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "RiverwayGrid": "src/" }
+    },
+    "require": {
+        "php": ">=7.0",
+        "symfony/symfony": "^3.2",
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/doctrine-cache-bundle": "^1.2",
+        "knplabs/knp-paginator-bundle": "^2.5"
+    }
+}

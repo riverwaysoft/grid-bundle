@@ -1,0 +1,8 @@
+{% if paginate %}
+    <div class="count">
+        Total: {{ pagination.getTotalItemCount }}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endif %}

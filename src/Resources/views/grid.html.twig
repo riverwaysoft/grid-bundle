@@ -1,0 +1,60 @@
+<div style="padding: 15px">
+    <div class="top-grid-row">
+        {% if paginate is defined and pagination.getTotalItemCount %}
+            {% include '@Grid/_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
+        {% endif %}
+
+        <div class="export">
+            {% block top_block %}{% endblock %}
+        </div>
+    </div>
+
+    <table class="table grid-table">
+        {% if head and paginate is defined and pagination.getTotalItemCount %}
+            <thead>
+            <tr>
+                {% for h in head %}
+                    {% if h.sortable %}
+                        <th{% if pagination.isSorted('o.' ~ h.attr) %} class="sorted sorted-{{ pagination.direction }}"{% endif %}>
+                            {{ knp_pagination_sortable(pagination, h.title, 'o.' ~ h.attr)|raw }}
+                        </th>
+                    {% else %}
+                        <th>
+                            {{ h.title }}
+                        </th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            </thead>
+        {% endif %}
+        {% if body %}
+            <tbody>
+            {% for row in body %}
+                <tr {% for attrname, attrvalue in row.attr -%}
+                {{ attrname }}="{{ attrvalue }}"
+            {%- endfor %}
+                >
+                {% for field in row.values %}
+                    <td>{{ field|raw }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        {% else %}
+            <h4>Нет результатов...</h4>
+            <img src="{{ asset('static/empty_result.jpeg') }}"/>
+        {% endif %}
+    </table>
+    <div class="bottom-grid-row">
+        {% if paginate is defined and pagination.getTotalItemCount %}
+            <hr/>
+            {% include '@Grid/_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
+        {% endif %}
+        <div class="export">
+            {% block bottom_block %}{% endblock %}
+        </div>
+    </div>
+
+    {% block footer %}{% endblock %}
+    <br/>
+</div>

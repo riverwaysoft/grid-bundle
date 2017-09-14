@@ -46,7 +46,7 @@ class GridWidget
         $this->paginator = $paginator;
         $this->templateEngine = $templateEngine;
         $this->pa = PropertyAccess::createPropertyAccessor();
-        $this->template='@Grid/grid.html.twig';
+        $this->template='@RiverwayGrid/grid.html.twig';
     }
 
     public function setFields(array $fields)

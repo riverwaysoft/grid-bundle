@@ -10,7 +10,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $builder = new TreeBuilder();
-        $builder->root('riverway.grid');
+        $builder->root('riverway_grid');
 
         return $builder;
     }

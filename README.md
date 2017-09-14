@@ -3,7 +3,7 @@ RiverwayGridBundle
 
 Installation
 ------------
-# Step 1: Download the Bundle
+#### Step 1: Download the Bundle
 Add private repo:
 ```
 "repositories":[
@@ -16,7 +16,7 @@ Add private repo:
 Install:
 ```composer require --prefer-dist riverway/grid-bundle```
 
-# Step 2: Enable the Bundle
+#### Step 2: Enable the Bundle
 
 Then, enable the bundle by adding it to the list of registered bundles
 in the `app/AppKernel.php` file of your project:
@@ -49,6 +49,8 @@ There are no configuration yet : )
 
 Usage
 -----
+Large and comprehensive example:
+
 ```php
 $query = $this->getDoctrine()->getRepository('AppBundle:Order')->createQueryBuilder('o')->getQuery();
 $grid = $this->get('riverway.grid');

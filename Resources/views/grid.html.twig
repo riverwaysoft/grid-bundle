@@ -1,7 +1,7 @@
 <div style="padding: 15px">
     <div class="top-grid-row">
         {% if paginate is defined and pagination.getTotalItemCount %}
-            {% include '_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
+            {% include '@RiverwayGrid/_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
         {% endif %}
 
         <div class="export">

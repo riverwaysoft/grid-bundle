@@ -64,6 +64,6 @@ Template:
  {{ riverway_grid_render([
     'id',
     'name',
-    {'type.key': {'himanize': true, 'label': 'Type'}}
+    {'type.key': {'humanize': true, 'label': 'Type'}}
     ], query) }}
 ```

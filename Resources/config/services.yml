@@ -4,3 +4,8 @@ services:
         arguments: ['@knp_paginator', '@translator']
         calls:
             - [setRequest, ['@request_stack']]
+    riverway.twig.extension.grid:
+        class: Riverway\Grid\Twig\RiverwayGridExtension
+        arguments: ['@riverway.grid']
+        tags:
+            - {name: 'twig.extension'}

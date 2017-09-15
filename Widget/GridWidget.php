@@ -4,7 +4,6 @@ namespace Riverway\Grid\Widget;
 
 use Doctrine\ORM\Query;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -20,12 +19,10 @@ class GridWidget
 {
     private $translator;
     private $paginator;
-    private $templateEngine;
     /**
      * @var Request
      */
     private $request;
-    private $template;
 
     private $fields = [];
     private $pa;
@@ -34,19 +31,15 @@ class GridWidget
      */
     private $query;
     private $isPaginate = false;
-    private $templateParams=[];
     private $rowAttr;
 
     public function __construct(
         PaginatorInterface $paginator,
-        TranslatorInterface $translator,
-        EngineInterface $templateEngine
+        TranslatorInterface $translator
     ) {
         $this->translator = $translator;
         $this->paginator = $paginator;
-        $this->templateEngine = $templateEngine;
         $this->pa = PropertyAccess::createPropertyAccessor();
-        $this->template='@RiverwayGrid/grid.html.twig';
     }
 
     public function setFields(array $fields)
@@ -70,11 +63,14 @@ class GridWidget
         $this->request = $request_stack->getCurrentRequest();
     }
 
-    public function getGrid()
+    public function getGridParams(): array
     {
         $paginator = $this->paginator;
-        $pagination = $paginator->paginate($this->query, $this->request->query->getInt('page', 1),
-            $this->isPaginate ? 50 : 100000);
+        $pagination = $paginator->paginate(
+            $this->query,
+            $this->request->query->getInt('page', 1),
+            $this->isPaginate ? 50 : 100000
+        );
 
         $gridDO = $this->generateGridData();
         $gridParams = [
@@ -83,12 +79,8 @@ class GridWidget
             'pagination' => $pagination,
             'paginate' => $this->isPaginate,
         ];
-        $html = $this->templateEngine->render(
-            $this->template,
-            array_merge($gridParams, array_merge($gridParams, $this->templateParams))
-        );
 
-        return $html;
+        return $gridParams;
     }
 
     /**
@@ -168,16 +160,6 @@ class GridWidget
     public function setRowAttr($attr)
     {
         $this->rowAttr = $attr;
-    }
-
-    /**
-     * @param $template
-     * @param array $params
-     */
-    public function setTemplate($template, array $params = [])
-    {
-        $this->template = $template;
-        $this->templateParams = $params;
     }
 
     private function preventWalk(array $field, string $fieldName, array &$head, $model, bool $asReport): bool

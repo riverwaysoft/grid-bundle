@@ -1,6 +1,6 @@
 services:
     riverway.grid:
         class: Riverway\Grid\Widget\GridWidget
-        arguments: ['@knp_paginator', '@translator', '@templating.engine.twig']
+        arguments: ['@knp_paginator', '@translator']
         calls:
             - [setRequest, ['@request_stack']]

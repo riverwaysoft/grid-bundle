@@ -14,10 +14,11 @@ class RiverwayGridExtension extends \Twig_Extension
         $this->widget = $widget;
     }
 
-    public function getFilters()
+    public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('riverway_grid_render', array($this, 'renderGrid')),
+            new \Twig_SimpleFunction('riverway_grid_render', array($this, 'renderGrid'),
+                array('is_safe' => array('html'), 'needs_environment' => true)),
         );
     }
 
@@ -25,6 +26,7 @@ class RiverwayGridExtension extends \Twig_Extension
     {
         $this->widget->setFields($fields);
         $this->widget->setQuery($query);
+
         return $env->render('@RiverwayGrid/grid.html.twig', $this->widget->getGridParams());
     }
 }

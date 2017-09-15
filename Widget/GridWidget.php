@@ -93,21 +93,18 @@ class GridWidget
         $fields = $this->fields;
         $head = [];
         $body = [];
-        $t = function ($m) {
-            return $this->translator->trans($m);
-        };
 
         foreach ($fields as $fieldName => $field) {
             if (is_array($field)) {
                 $headStr = [
                     'attr' => $fieldName,
-                    'title' => isset($field['label']) ? $field['label'] : $t($fieldName),
+                    'title' => isset($field['label']) ? $field['label'] : $this->translate($fieldName),
                     'sortable' => isset($field['sortable']) ? $field['sortable'] : false,
                 ];
             } else {
                 $headStr = [
                     'attr' => $field,
-                    'title' => $t($field),
+                    'title' => $this->translate($field),
                     'sortable' => false,
                 ];
             }
@@ -132,7 +129,9 @@ class GridWidget
                         $value = $this->pa->getValue($model, $fieldName);
                     }
                     if (isset($field['translate']) && $field['translate'] === true) {
-                        $value = $t($value);
+                        $value = $this->translate($value);
+                    } elseif (isset($field['humanize']) && $field['humanize'] === true) {
+                        $value = $this->humanize($value);
                     }
                 } else {
                     $value = $this->pa->getValue($model, $field);
@@ -160,6 +159,21 @@ class GridWidget
     public function setRowAttr($attr)
     {
         $this->rowAttr = $attr;
+    }
+
+    private function humanize(string $key): string
+    {
+        $res = explode('_', strtolower($key));
+        foreach ($res as $i => $val) {
+            $res[$i] = ucfirst($val);
+        }
+
+        return join(' ', $res);
+    }
+
+    private function translate(string $key): string
+    {
+        return $this->translator->trans($key);
     }
 
     private function preventWalk(array $field, string $fieldName, array &$head, $model, bool $asReport): bool

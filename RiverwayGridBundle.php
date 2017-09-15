@@ -1,6 +1,6 @@
 <?php
 
-namespace RiverwayGrid;
+namespace Riverway\Grid;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

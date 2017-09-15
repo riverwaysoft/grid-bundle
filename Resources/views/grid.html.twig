@@ -1,7 +1,7 @@
 <div style="padding: 15px">
     <div class="top-grid-row">
         {% if paginate is defined and pagination.getTotalItemCount %}
-            {% include '@RiverwayGrid/_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
+            {% include '_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
         {% endif %}
 
         <div class="export">
@@ -42,7 +42,7 @@
             </tbody>
         {% else %}
             <h4>Нет результатов...</h4>
-            <img src="{{ asset('static/empty_result.jpeg') }}"/>
+            <img src="{{ asset('bundles/riverwaygrid/empty_result.jpeg') }}"/>
         {% endif %}
     </table>
     <div class="bottom-grid-row">

@@ -1,6 +1,6 @@
 <?php
 
-namespace RiverwayGrid\Widget;
+namespace Riverway\Grid\Widget;
 
 use Doctrine\ORM\Query;
 use Knp\Component\Pager\PaginatorInterface;

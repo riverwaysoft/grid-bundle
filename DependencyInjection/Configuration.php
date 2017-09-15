@@ -1,6 +1,6 @@
 <?php
 
-namespace RiverwayGrid\DependencyInjection;
+namespace Riverway\Grid\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

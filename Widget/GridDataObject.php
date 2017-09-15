@@ -1,6 +1,6 @@
 <?php
 
-namespace RiverwayGrid\Widget;
+namespace Riverway\Grid\Widget;
 
 class GridDataObject
 {

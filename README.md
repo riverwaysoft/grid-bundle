@@ -9,7 +9,7 @@ Add private repo:
 "repositories":[
     {
         "type": "git",
-        "url" : "https://gitlab.com/riverway/riverway-grid-bundle.git"
+        "url" : "https://github.com/riverwaysoft/riverway-grid-bundle"
     }
 ]
 ```

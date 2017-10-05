@@ -12,6 +12,7 @@ Add private repo:
         "url" : "https://github.com/riverwaysoft/riverway-grid-bundle"
     }
 ]
+
 ```
 Install:
 ```composer require --prefer-dist riverway/grid-bundle```

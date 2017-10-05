@@ -14,6 +14,7 @@ Add private repo:
 ]
 
 ```
+
 Install:
 ```composer require --prefer-dist riverway/grid-bundle```
 

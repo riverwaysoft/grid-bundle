@@ -4,17 +4,8 @@ RiverwayGridBundle
 Installation
 ------------
 #### Step 1: Download the Bundle
-Add private repo:
-```
-"repositories":[
-    {
-        "type": "git",
-        "url" : "git@bitbucket.org:riverway/riverway-grid-bundle.git"
-    }
-]
-```
 Install:
-```composer require --prefer-dist riverway/grid-bundle```
+```composer require --prefer-dist riverwaysoft/grid-bundle```
 
 #### Step 2: Enable the Bundle
 

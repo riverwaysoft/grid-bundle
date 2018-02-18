@@ -30,7 +30,7 @@ class GridWidget
      * @var Query
      */
     private $query;
-    private $isPaginate = false;
+    private $isPaginate;
     private $rowAttr;
 
     public function __construct(
@@ -39,6 +39,7 @@ class GridWidget
     ) {
         $this->translator = $translator;
         $this->paginator = $paginator;
+        $this->isPaginate = true;
         $this->pa = PropertyAccess::createPropertyAccessor();
     }
 
@@ -53,9 +54,9 @@ class GridWidget
         $this->query = $query;
     }
 
-    public function enablePagination($pagination)
+    public function disablePagination()
     {
-        $this->isPaginate = $pagination;
+        $this->isPaginate = false;
     }
 
     public function setRequest(RequestStack $request_stack)

@@ -23,7 +23,7 @@ class RiverwayGridExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('app_grid_render', array($this, 'renderGrid'),
+            new \Twig_SimpleFunction('riverway_grid_render', array($this, 'renderGrid'),
                 array('is_safe' => array('html'), 'needs_environment' => true)),
         );
     }
@@ -33,6 +33,6 @@ class RiverwayGridExtension extends \Twig_Extension
         $request = $this->requestStack->getMasterRequest();
         $exportUrl =  $this->router->generate($request->get('_route'),
             array_merge($request->query->all(), ['download' => 1]));
-        return $env->render('bundles/RiverwayGridBundle/grid.html.twig', array_merge($this->widget->getGridParams(), ['export_url'=>$exportUrl]));
+        return $env->render('@RiverwayGridBundle/grid.html.twig', array_merge($this->widget->getGridParams(), ['export_url'=>$exportUrl]));
     }
 }

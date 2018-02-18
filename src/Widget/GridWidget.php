@@ -4,8 +4,10 @@ namespace Riverway\Grid\Widget;
 
 use Doctrine\ORM\Query;
 use Knp\Component\Pager\PaginatorInterface;
+use Riverway\Grid\Util\Downloader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -175,6 +177,12 @@ class GridWidget
     private function translate(string $key): string
     {
         return $this->translator->trans($key);
+    }
+
+    public function tryToDownload($name = 'report'): ?Response
+    {
+        $grid = clone $this;
+        return Downloader::download($this->request, $grid, $name);
     }
 
     private function preventWalk(array $field, string $fieldName, array &$head, $model, bool $asReport): bool

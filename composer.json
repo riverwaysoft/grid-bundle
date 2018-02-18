@@ -4,7 +4,7 @@
     "type": "project",
     "description": "Grid bundle",
     "autoload": {
-        "psr-4": { "Riverway\\Grid\\": "" }
+        "psr-4": { "Riverway\\Grid\\": "src/" }
     },
     "require": {
         "php": ">=7.1",

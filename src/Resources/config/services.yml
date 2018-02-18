@@ -7,6 +7,6 @@ services:
         public: true
     riverway.twig.extension.grid:
         class: Riverway\Grid\Twig\RiverwayGridExtension
-        arguments: ['@riverway.grid']
+        arguments: ['@riverway.grid', '@router', '@request_stack']
         tags:
             - { name: 'twig.extension' }

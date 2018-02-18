@@ -1,0 +1,28 @@
+<div style="padding: 15px">
+    <div class="top-grid-row">
+        {% if paginate is defined and pagination.getTotalItemCount %}
+            {% include '@RiverwayGrid/_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
+        {% endif %}
+        <div class="export">
+            {% block top_block %}
+                <a href="{{ export_url }}">
+                    <i class="fa fa-download"></i>
+                    <b>Export</b>
+                </a>
+            {% endblock %}
+        </div>
+    </div>
+    {% include '@RiverwayGrid/_table.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
+    <div class="bottom-grid-row">
+        {% if paginate is defined and pagination.getTotalItemCount %}
+            <hr/>
+            {% include '@RiverwayGrid/_paginator.html.twig' with  { 'pagination': pagination, 'paginate': paginate} %}
+        {% endif %}
+        <div class="export">
+            {% block bottom_block %}{% endblock %}
+        </div>
+    </div>
+
+    {% block footer %}{% endblock %}
+    <br/>
+</div>

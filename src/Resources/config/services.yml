@@ -1,12 +1,12 @@
 services:
-    riverway.grid:
-        class: Riverway\Grid\Widget\GridWidget
-        arguments: ['@knp_paginator', '@translator']
+    Riverway\Grid\Widget\GridWidget:
+        autowire: true
+        autoconfigure: true
         calls:
             - [setRequest, ['@request_stack']]
         public: true
-    riverway.twig.extension.grid:
-        class: Riverway\Grid\Twig\RiverwayGridExtension
-        arguments: ['@riverway.grid', '@router', '@request_stack']
+    Riverway\Grid\Twig\RiverwayGridExtension:
+        autowire: true
+        autoconfigure: true
         tags:
             - { name: 'twig.extension' }
